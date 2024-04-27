@@ -1,7 +1,15 @@
+import { useLoaderData } from "react-router-dom";
+
 const Home = () => {
+  const artAndCrafts = useLoaderData();
+  console.log(artAndCrafts);
   return (
     <div>
-      <h2>This is home page</h2>
+      {artAndCrafts.map((art) => (
+        <div key={art._id}>
+          <img src={art.image} alt="" />
+        </div>
+      ))}
     </div>
   );
 };
