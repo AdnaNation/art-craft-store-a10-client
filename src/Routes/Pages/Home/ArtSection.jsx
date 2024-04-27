@@ -1,10 +1,11 @@
 import { ImImage } from "react-icons/im";
+import { Link } from "react-router-dom";
 const ArtSection = ({ art }) => {
   console.log(art);
   return (
     <div>
       <div className="card bg-base-100 shadow-xl py-2">
-        <div className="flex items-center justify-start gap-4 pr-4">
+        <div className="flex items-center justify-start gap-4 pl-4">
           <div>
             <ImImage className="text-4xl text-sky-500"></ImImage>
           </div>
@@ -17,16 +18,19 @@ const ArtSection = ({ art }) => {
             </div>
           </div>
         </div>
-        <figure className="p-4">
+        <figure className="p-2 md:p-4">
           <img
             src={art.image}
             alt={art.subcategory_Name}
             className="rounded-xl w-full h-[250px] "
           />
         </figure>
-        <button className="text-sky-500 border-sky-500 bg-white mx-4 btn">
+        <Link
+          to={`/artAndCraft/${art._id}`}
+          className="text-sky-500 border-sky-500 bg-white mx-4 btn"
+        >
           View Details
-        </button>
+        </Link>
       </div>
     </div>
   );
