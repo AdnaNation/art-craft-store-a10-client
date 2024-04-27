@@ -1,7 +1,6 @@
 import { ImImage } from "react-icons/im";
 import { Link } from "react-router-dom";
 const ArtSection = ({ art }) => {
-  console.log(art);
   return (
     <div>
       <div className="card bg-base-100 shadow-xl py-2">
