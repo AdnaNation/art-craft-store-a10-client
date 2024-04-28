@@ -42,14 +42,19 @@ const Navbar = () => {
           to="/"
           className=" flex items-center text-xl md:text-3xl font-platypi"
         >
-          <span className="text-red-500">Luxury</span>Estate
+          <span className="text-sky-600">Art&Craft</span>Gallery
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <button className="btn bg-blue-950 text-white p-1 md:p-2">Login</button>
+        <Link to="login" className="btn bg-blue-500 text-white p-1 md:p-2">
+          Login
+        </Link>
+        <Link to="register" className="btn bg-pink-400 text-white p-1 md:p-2">
+          Register
+        </Link>
       </div>
     </div>
   );

@@ -15,8 +15,8 @@ const Footer = () => {
             </p>
           </div>
           <div className="flex gap-2 md:flex-row flex-col justify-center items-center">
-            <p className="font-medium text-lg md:w-1/2 w-full text-black/60">
-              Sign-up for our newsletter to get up-to-date from us
+            <p className="font-medium text-sm md:text-lg  w-full text-black/60">
+              Sign-up our newsletter to get up-to-date
             </p>
             <div className="flex gap-2 shrink">
               <input

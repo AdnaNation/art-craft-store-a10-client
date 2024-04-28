@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import ArtDetails from "./Pages/ArtDetails";
 import ErrorPage from "./Pages/ErrorPage";
 import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 import Roots from "./layouts/Roots";
 
 const router = createBrowserRouter([
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
         element: <ArtDetails></ArtDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/artAndCraft/${params.id}`),
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
       },
     ],
   },

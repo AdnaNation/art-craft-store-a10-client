@@ -1,5 +1,6 @@
+import { FaLongArrowAltRight } from "react-icons/fa";
 import { IoIosStarHalf } from "react-icons/io";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const ArtDetails = () => {
   const art = useLoaderData();
@@ -31,11 +32,18 @@ const ArtDetails = () => {
           </h4>
           <p className="text-gray-500">{art.short_description}</p>
         </div>
-        <div className="flex justify-around border-t border-b bg-sky-300 bg-opacity-45 mx-6 rounded-md font-medium">
+        <div className="text-sm text-center flex justify-around border-t border-b border-sky-300 mx-6 rounded-md font-medium text-blue-700">
           <p>Customization: {art.customization}</p>
+          <p>Processing Time: {art.processing_time}</p>
           <p>Stock Status: {art.stockStatus}</p>
         </div>
       </div>
+      <Link
+        to="/"
+        className="flex justify-end items-center gap-1 mt-2 underline text-blue-700"
+      >
+        Back to Homepage <FaLongArrowAltRight />
+      </Link>
     </div>
   );
 };

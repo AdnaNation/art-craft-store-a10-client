@@ -1,11 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 import ArtSection from "./ArtSection";
+import Banner from "./Banner";
 
 const Home = () => {
   const artAndCrafts = useLoaderData();
   console.log(artAndCrafts);
   return (
     <div className="min-h-screen">
+      <Banner></Banner>
       <div>
         <h2 className="font-platypi text-center font-extrabold text-2xl md:text-4xl">
           Art Items
