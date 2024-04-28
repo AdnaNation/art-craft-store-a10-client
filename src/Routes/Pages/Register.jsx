@@ -1,15 +1,22 @@
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photo = form.photo.value;
+    const password = form.password.value;
+    console.log(name, email, photo, password);
+  };
   return (
     <div className="min-h-screen">
       <div className="bg-sky-200 bg-opacity-75 p-2 md:p-6 md:w-3/4 lg:w-2/4 mx-auto rounded-md mt-10">
         <h2 className="text-2xl md:text-3xl font-extrabold font-platypi text-center underline mb-2">
           Register Please
         </h2>
-        <form
-        // onSubmit={handleAddCoffee}
-        >
+        <form onSubmit={handleRegister}>
           {" "}
           <div className="mb-2">
             <div className="form-control w-full">
@@ -73,18 +80,18 @@ const Register = () => {
               </label>
             </div>
           </div>
-          <p className="text-center mb-3">
-            Already have a account? Please{" "}
-            <Link to="/login" className="underline text-blue-800">
-              Login
-            </Link>
-          </p>
           <input
             type="submit"
             value="Register"
             className="btn btn-block btn-primary text-white"
           />
         </form>
+        <p className="text-center mt-3">
+          Already have a account? Please{" "}
+          <Link to="/login" className="underline text-blue-800">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );
