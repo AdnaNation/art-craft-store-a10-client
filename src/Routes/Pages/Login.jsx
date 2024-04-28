@@ -1,13 +1,15 @@
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
-  const { signIn, setUser, googleSignIn } = useContext(AuthContext);
+  const { signIn, setUser, googleSignIn, githubSignIn } =
+    useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const [loginError, setLoginError] = useState("");
   const [success, setSuccess] = useState("");
@@ -43,6 +45,20 @@ const Login = () => {
       .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser.photoURL);
+        setUser(loggedInUser);
+        setSuccess("You have logged in successfully");
+        // navigate after login
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    githubSignIn(githubProvider)
+      .then((result) => {
+        const loggedInUser = result.user;
         setUser(loggedInUser);
         setSuccess("You have logged in successfully");
         // navigate after login
@@ -134,7 +150,7 @@ const Login = () => {
             </button>
 
             <button
-              //   onClick={handleGithubSignIn}
+              onClick={handleGithubSignIn}
               aria-label="Log in with GitHub"
               className="p-3 rounded-sm"
             >
