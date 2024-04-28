@@ -1,15 +1,46 @@
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+  const { signIn, setUser } = useContext(AuthContext);
+  //   const location = useLocation();
+  const navigate = useNavigate();
+  const [loginError, setLoginError] = useState("");
+  const [success, setSuccess] = useState("");
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    // reset error or success
+    setLoginError("");
+    setSuccess("");
+
+    signIn(email, password)
+      .then((result) => {
+        const loggedInUser = result.user;
+        setUser(loggedInUser);
+        setSuccess("You have logged in successfully");
+        // navigate after login
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoginError(
+          "Can't find the user with the email/password you provided"
+        );
+      });
+  };
   return (
     <div className="min-h-screen">
       <div className="bg-sky-200 bg-opacity-75 p-2 md:p-6 md:w-3/4 lg:w-2/4 mx-auto rounded-md mt-10">
         <h2 className="text-2xl md:text-3xl font-extrabold font-platypi text-center underline mb-2">
           Login Please
         </h2>
-        <form
-        // onSubmit={handleAddCoffee}
-        >
+        <form onSubmit={handleSignIn}>
           <div className="mb-2">
             <div className="form-control w-full">
               <label className="label">
@@ -48,6 +79,11 @@ const Login = () => {
             value="Login"
             className="btn btn-block btn-primary text-white mt-2"
           />
+
+          {success && <p className="text-green-600 text-center">{success}</p>}
+          {loginError && (
+            <p className="text-red-700 text-center">{loginError}</p>
+          )}
 
           <div className="flex items-center pt-4 space-x-1 mt-4">
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
