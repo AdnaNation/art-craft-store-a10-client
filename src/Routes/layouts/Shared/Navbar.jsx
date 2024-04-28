@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
@@ -58,11 +60,11 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <div className="flex gap-3 items-center">
-            <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
+            <div id="tooltip-1">
               <img
                 alt=""
                 className="w-8 h-8 md:w-10 md:h-10 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 dark:ring-violet-600 dark:ring-offset-gray-100 "
-                src={user.photoURL}
+                src={user?.photoURL}
               />
             </div>
 
@@ -93,6 +95,11 @@ const Navbar = () => {
           Register
         </Link> */}
       </div>
+      <Tooltip
+        anchorSelect="#tooltip-1"
+        content={user?.displayName}
+        place="left"
+      />
     </div>
   );
 };

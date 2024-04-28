@@ -1,11 +1,14 @@
+import { GoogleAuthProvider } from "firebase/auth";
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
-  const { signIn, setUser } = useContext(AuthContext);
-  //   const location = useLocation();
+  const { signIn, setUser, googleSignIn } = useContext(AuthContext);
+  const location = useLocation();
   const navigate = useNavigate();
+  const googleProvider = new GoogleAuthProvider();
+
   const [loginError, setLoginError] = useState("");
   const [success, setSuccess] = useState("");
   const handleSignIn = (e) => {
@@ -25,13 +28,28 @@ const Login = () => {
         setUser(loggedInUser);
         setSuccess("You have logged in successfully");
         // navigate after login
-        navigate("/");
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         console.log(error);
         setLoginError(
           "Can't find the user with the email/password you provided"
         );
+      });
+  };
+
+  const handleGoogleSingIn = () => {
+    googleSignIn(googleProvider)
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser.photoURL);
+        setUser(loggedInUser);
+        setSuccess("You have logged in successfully");
+        // navigate after login
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.log(error.message);
       });
   };
   return (
@@ -102,7 +120,7 @@ const Login = () => {
           </div>
           <div className="flex justify-center space-x-4">
             <button
-              //   onClick={handleGoogleSingIn}
+              onClick={handleGoogleSingIn}
               aria-label="Log in with Google"
               className="p-3 rounded-sm"
             >
