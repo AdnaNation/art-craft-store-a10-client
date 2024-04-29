@@ -1,9 +1,61 @@
+import { useContext } from "react";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
+
 const AddArt = () => {
+  const { user } = useContext(AuthContext);
+  const uid = user?.uid;
   const handleAddArt = (e) => {
     e.preventDefault();
     const form = e.target;
+    const item_name = form.artName.value;
+    const subcategory_Name = form.subcategoryName.value;
+    const shortDescription = form.shortDescription.value;
+    const price = form.price.value;
+    const rating = form.rating.value;
+    const customization = form.customizable.value;
+    const processing_time = form.processingTime.value;
     const stockStatus = form.stockStatus.value;
-    console.log(stockStatus);
+    const name = form.name.value;
+    const email = form.email.value;
+    const photo = form.photo.value;
+
+    const addedArt = {
+      item_name,
+      subcategory_Name,
+      shortDescription,
+      price,
+      rating,
+      customization,
+      processing_time,
+      stockStatus,
+      name,
+      email,
+      photo,
+      uid,
+    };
+    console.log(addedArt);
+
+    // send data to the server
+    fetch("http://localhost:5000/myArt", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addedArt),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Congrats!",
+            text: "Art item Added Successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
   };
   return (
     <div className="min-h-screen">
@@ -23,6 +75,7 @@ const AddArt = () => {
                   type="text"
                   name="artName"
                   placeholder="Art Name"
+                  required
                   className="input input-bordered w-full"
                 />
               </label>
@@ -36,6 +89,7 @@ const AddArt = () => {
                   type="text"
                   name="subcategoryName"
                   placeholder="Subcategory Name"
+                  required
                   className="input input-bordered w-full"
                 />
               </label>
@@ -52,6 +106,7 @@ const AddArt = () => {
                   type="text"
                   name="shortDescription"
                   placeholder="Short Description"
+                  required
                   className="input input-bordered w-full"
                 />
               </label>
@@ -65,6 +120,7 @@ const AddArt = () => {
                   type="text"
                   name="price"
                   placeholder="Price"
+                  required
                   className="input input-bordered w-full"
                 />
               </label>
@@ -81,6 +137,7 @@ const AddArt = () => {
                   type="text"
                   name="rating"
                   placeholder="Rating"
+                  required
                   className="input input-bordered w-full"
                 />
               </label>
@@ -109,6 +166,7 @@ const AddArt = () => {
                   type="text"
                   name="processingTime"
                   placeholder="Processing Time"
+                  required
                   className="input input-bordered w-full"
                 />
               </label>
@@ -137,6 +195,7 @@ const AddArt = () => {
                   type="text"
                   name="name"
                   placeholder="Your Name"
+                  required
                   className="input input-bordered w-full"
                 />
               </label>
@@ -150,6 +209,7 @@ const AddArt = () => {
                   type="text"
                   name="email"
                   placeholder="Your Email"
+                  required
                   className="input input-bordered w-full"
                 />
               </label>

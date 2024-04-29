@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddArt from "./Pages/AddArt";
+import AllArtItems from "./Pages/AllArtItems";
 import ArtDetails from "./Pages/ArtDetails";
 import ErrorPage from "./Pages/ErrorPage";
 import Home from "./Pages/Home/Home";
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
       {
         path: "/addArt",
         element: <AddArt></AddArt>,
+      },
+      {
+        path: "/allArt",
+        element: <AllArtItems></AllArtItems>,
+        loader: () => fetch("http://localhost:5000/allArt"),
       },
     ],
   },
