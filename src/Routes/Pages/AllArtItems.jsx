@@ -24,7 +24,7 @@ const AllArtItems = () => {
             </div>
             <figure className="p-2 md:p-4">
               <img
-                src={art.image}
+                src={art.photo}
                 alt={art.subcategory_Name}
                 className="rounded-xl w-full h-[250px] "
               />

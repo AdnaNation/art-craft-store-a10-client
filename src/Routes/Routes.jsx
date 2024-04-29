@@ -5,6 +5,7 @@ import ArtDetails from "./Pages/ArtDetails";
 import ErrorPage from "./Pages/ErrorPage";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login";
+import MyArt from "./Pages/MyArt";
 import Register from "./Pages/Register";
 import Roots from "./layouts/Roots";
 
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
       {
         path: "/allArt",
         element: <AllArtItems></AllArtItems>,
+        loader: () => fetch("http://localhost:5000/allArt"),
+      },
+      {
+        path: "/myArt",
+        element: <MyArt></MyArt>,
         loader: () => fetch("http://localhost:5000/allArt"),
       },
     ],
