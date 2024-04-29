@@ -1,6 +1,7 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
@@ -12,7 +13,6 @@ const Login = () => {
   const githubProvider = new GithubAuthProvider();
 
   const [loginError, setLoginError] = useState("");
-  const [success, setSuccess] = useState("");
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -22,13 +22,16 @@ const Login = () => {
 
     // reset error or success
     setLoginError("");
-    setSuccess("");
 
     signIn(email, password)
       .then((result) => {
         const loggedInUser = result.user;
         setUser(loggedInUser);
-        setSuccess("You have logged in successfully");
+        Swal.fire({
+          title: "Congrats!",
+          text: "You have successfully logged in",
+          icon: "success",
+        });
         // navigate after login
         navigate(location?.state ? location.state : "/");
       })
@@ -46,7 +49,11 @@ const Login = () => {
         const loggedInUser = result.user;
         console.log(loggedInUser.photoURL);
         setUser(loggedInUser);
-        setSuccess("You have logged in successfully");
+        Swal.fire({
+          title: "Congrats!",
+          text: "You have successfully logged in",
+          icon: "success",
+        });
         // navigate after login
         navigate(location?.state ? location.state : "/");
       })
@@ -60,7 +67,11 @@ const Login = () => {
       .then((result) => {
         const loggedInUser = result.user;
         setUser(loggedInUser);
-        setSuccess("You have logged in successfully");
+        Swal.fire({
+          title: "Congrats!",
+          text: "You have successfully logged in",
+          icon: "success",
+        });
         // navigate after login
         navigate(location?.state ? location.state : "/");
       })
@@ -114,7 +125,6 @@ const Login = () => {
             className="btn btn-block btn-primary text-white mt-2"
           />
 
-          {success && <p className="text-green-600 text-center">{success}</p>}
           {loginError && (
             <p className="text-red-700 text-center">{loginError}</p>
           )}
