@@ -1,16 +1,14 @@
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { IoIosStarHalf } from "react-icons/io";
 import { Link, useLoaderData } from "react-router-dom";
-
-const ArtDetails = () => {
+const AllArtDetails = () => {
   const art = useLoaderData();
-  console.log(art);
   return (
     <div className="min-h-screen">
       <div className="card bg-base-100 shadow-xl py-2 space-y-2">
         <figure className="p-2 md:p-4">
           <img
-            src={art.image}
+            src={art.photo}
             alt={art.subcategory_Name}
             className="rounded-2xl lg:w-3/4 md:w-full h-[300px] md:h-[500px]  md:mx-5 lg:mx-20"
           />
@@ -39,7 +37,7 @@ const ArtDetails = () => {
         </div>
       </div>
       <Link
-        to="/"
+        to="/allArt"
         className="flex justify-end items-center gap-1 mt-2 underline text-blue-700"
       >
         Back to previous page <FaLongArrowAltRight />
@@ -48,4 +46,4 @@ const ArtDetails = () => {
   );
 };
 
-export default ArtDetails;
+export default AllArtDetails;

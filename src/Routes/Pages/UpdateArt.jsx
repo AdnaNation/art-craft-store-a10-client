@@ -1,11 +1,10 @@
-import { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../providers/AuthProvider";
 
-const AddArt = () => {
-  const { user } = useContext(AuthContext);
-  const uid = user?.uid;
-  const handleAddArt = (e) => {
+const UpdateArt = () => {
+  const art = useLoaderData();
+  console.log(art);
+  const handleUpdateArt = (e) => {
     e.preventDefault();
     const form = e.target;
     const item_name = form.artName.value;
@@ -20,7 +19,7 @@ const AddArt = () => {
     const email = form.email.value;
     const photo = form.photo.value;
 
-    const addedArt = {
+    const updatedArt = {
       item_name,
       subcategory_Name,
       shortDescription,
@@ -32,25 +31,24 @@ const AddArt = () => {
       name,
       email,
       photo,
-      uid,
     };
-    console.log(addedArt);
+    console.log(updatedArt);
 
     // send data to the server
-    fetch("http://localhost:5000/myArt", {
-      method: "POST",
+    fetch(`http://localhost:5000/allArt/${art._id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(addedArt),
+      body: JSON.stringify(updatedArt),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
-            title: "Congrats!",
-            text: "Art item Added Successfully",
+            title: "Success!",
+            text: "Your Art Updated Successfully",
             icon: "success",
             confirmButtonText: "Ok",
           });
@@ -61,9 +59,9 @@ const AddArt = () => {
     <div className="min-h-screen">
       <div className="bg-sky-200 bg-opacity-75 p-2 md:p-6 md:w-3/4 lg:w-2/4 mx-auto rounded-md mt-10">
         <h2 className="text-3xl font-extrabold font-platypi text-center underline">
-          Add Your Art
+          Update Your Art
         </h2>
-        <form onSubmit={handleAddArt}>
+        <form onSubmit={handleUpdateArt}>
           <div className="md:flex mb-8">
             <div className="form-control md:w-1/2 w-full">
               <label className="label">
@@ -73,6 +71,7 @@ const AddArt = () => {
                 <input
                   type="text"
                   name="artName"
+                  defaultValue={art.item_name}
                   placeholder="Art Name"
                   required
                   className="input input-bordered w-full"
@@ -87,6 +86,7 @@ const AddArt = () => {
                 <input
                   type="text"
                   name="subcategoryName"
+                  defaultValue={art.subcategory_Name}
                   placeholder="Subcategory Name"
                   required
                   className="input input-bordered w-full"
@@ -104,6 +104,7 @@ const AddArt = () => {
                 <input
                   type="text"
                   name="shortDescription"
+                  defaultValue={art.shortDescription}
                   placeholder="Short Description"
                   required
                   className="input input-bordered w-full"
@@ -118,6 +119,7 @@ const AddArt = () => {
                 <input
                   type="text"
                   name="price"
+                  defaultValue={art.price}
                   placeholder="Price"
                   required
                   className="input input-bordered w-full"
@@ -135,6 +137,7 @@ const AddArt = () => {
                 <input
                   type="text"
                   name="rating"
+                  defaultValue={art.rating}
                   placeholder="Rating"
                   required
                   className="input input-bordered w-full"
@@ -147,6 +150,7 @@ const AddArt = () => {
               </label>
               <select
                 name="customizable"
+                defaultValue={art.customization}
                 className="input input-bordered w-full"
               >
                 <option value="yes">Yes</option>
@@ -164,6 +168,7 @@ const AddArt = () => {
                 <input
                   type="text"
                   name="processingTime"
+                  defaultValue={art.processing_time}
                   placeholder="Processing Time"
                   required
                   className="input input-bordered w-full"
@@ -176,6 +181,7 @@ const AddArt = () => {
               </label>
               <select
                 name="stockStatus"
+                defaultValue={art.stockStatus}
                 className="input input-bordered w-full"
               >
                 <option value="In Stock">In Stock</option>
@@ -193,6 +199,7 @@ const AddArt = () => {
                 <input
                   type="text"
                   name="name"
+                  defaultValue={art.name}
                   placeholder="Your Name"
                   required
                   className="input input-bordered w-full"
@@ -207,6 +214,7 @@ const AddArt = () => {
                 <input
                   type="text"
                   name="email"
+                  defaultValue={art.email}
                   placeholder="Your Email"
                   required
                   className="input input-bordered w-full"
@@ -224,6 +232,7 @@ const AddArt = () => {
                 <input
                   type="text"
                   name="photo"
+                  defaultValue={art.photo}
                   placeholder="Your Art Photo URL"
                   className="input input-bordered w-full"
                 />
@@ -232,7 +241,7 @@ const AddArt = () => {
           </div>
           <input
             type="submit"
-            value="Add Your Art"
+            value="Update Your Art"
             className="btn btn-block  btn-primary text-white "
           />
         </form>
@@ -241,4 +250,4 @@ const AddArt = () => {
   );
 };
 
-export default AddArt;
+export default UpdateArt;

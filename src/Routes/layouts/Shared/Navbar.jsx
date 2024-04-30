@@ -16,14 +16,18 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/addArt">Add Your Art</NavLink>
-      </li>
-      <li>
         <NavLink to="/allArt">All Art</NavLink>
       </li>
-      <li>
-        <NavLink to="/myArt">My Art</NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to="/addArt">Add Art Item</NavLink>
+          </li>
+          <li>
+            <NavLink to="/myArt">My Art List</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (
