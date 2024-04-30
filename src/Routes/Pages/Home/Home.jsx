@@ -1,10 +1,12 @@
 import { useLoaderData } from "react-router-dom";
 import ArtSection from "./ArtSection";
 import Banner from "./Banner";
+import BestArtist from "./BestArtist";
+import Testimonial from "./Testimonial";
 
 const Home = () => {
   const artAndCrafts = useLoaderData();
-  console.log(artAndCrafts);
+
   return (
     <div className="min-h-screen">
       <Banner></Banner>
@@ -27,6 +29,8 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <BestArtist></BestArtist>
+      <Testimonial></Testimonial>
     </div>
   );
 };

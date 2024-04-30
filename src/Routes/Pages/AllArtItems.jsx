@@ -3,23 +3,28 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const AllArtItems = () => {
   const allArt = useLoaderData();
-  console.log(allArt);
+
   return (
     <div className="min-h-screen">
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {allArt.map((art) => (
           <div key={art._id} className="card bg-base-100 shadow-xl py-2">
-            <div className="flex items-center justify-start gap-4 pl-4">
-              <div>
-                <ImImage className="text-4xl text-sky-500"></ImImage>
-              </div>
-              <div>
-                <h2 className="text-center text-xl font-bold">
-                  {art.subcategory_Name}
-                </h2>
-                <div className="flex justify-between text-sky-500 text-sm">
-                  <p>Price: {art.price}$</p> <p>Rating: {art.rating}</p>
+            <div className="flex justify-between pr-4 items-center">
+              <div className="flex items-center justify-start gap-4 pl-4">
+                <div>
+                  <ImImage className="text-4xl text-sky-500"></ImImage>
                 </div>
+                <div>
+                  <h2 className="text-center text-xl font-bold">
+                    {art.subcategory_Name}
+                  </h2>
+                  <div className="flex justify-between text-sky-500 text-sm">
+                    <p>Price: {art.price}$</p> <p>Rating: {art.rating}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="font-semibold text-sm text-sky-400 text-center">
+                <p>By:{art.name}</p>
               </div>
             </div>
             <figure className="p-2 md:p-4">

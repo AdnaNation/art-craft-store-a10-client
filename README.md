@@ -1,8 +1,15 @@
-# React + Vite
+# Art&Craft Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## [ Live Link ](https://art-and-craft-store-c82cd.web.app)
 
-Currently, two official plugins are available:
+Click here for live site: [https://art-and-craft-store-c82cd.web.app](https://art-and-craft-store-c82cd.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- The website is about a art website.
+- It is about "Painting and Drawing" category.
+- There is a add art route where you can add your art.
+- This route protected by the way.
+- User have to log in first to access all the protected routes.
+
+## [ Selected Category ]
+
+- Painting and Drawing

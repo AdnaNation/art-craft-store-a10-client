@@ -37,7 +37,7 @@ const AddArt = () => {
     console.log(addedArt);
 
     // send data to the server
-    fetch("http://localhost:5000/myArt", {
+    fetch("https://art-and-craft-store-server-omega.vercel.app/myArt", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -26,7 +26,7 @@ const ArtSection = ({ art }) => {
         </figure>
         <Link
           to={`/artAndCraft/${art._id}`}
-          className="text-sky-500 border-sky-500 bg-white mx-4 btn"
+          className="text-sky-500 border-sky-500 dark:bg-blue-700 bg-white mx-4 btn"
         >
           View Details
         </Link>

@@ -44,9 +44,12 @@ const MyArt = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/allArt/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://art-and-craft-store-server-omega.vercel.app/allArt/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
@@ -56,6 +59,7 @@ const MyArt = () => {
               const remaining = myArts.filter((art) => art._id !== id);
 
               setMyArts(remaining);
+              setFilteredArt(remaining);
             }
           });
       }
@@ -83,6 +87,7 @@ const MyArt = () => {
           </ul>
         </details>
       </div>
+
       {filteredArt.length === 0 && (
         <p className="text-center text-2xl font-bold font-serif mt-8">
           Please add your Art first

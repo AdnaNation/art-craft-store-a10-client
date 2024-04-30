@@ -21,13 +21,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/artAndCraft"),
+        loader: () =>
+          fetch(
+            "https://art-and-craft-store-server-omega.vercel.app/artAndCraft"
+          ),
       },
       {
         path: "/artAndCraft/:id",
         element: <ArtDetails></ArtDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/artAndCraft/${params.id}`),
+          fetch(
+            `https://art-and-craft-store-server-omega.vercel.app/artAndCraft/${params.id}`
+          ),
       },
       {
         path: "/register",
@@ -48,7 +53,8 @@ const router = createBrowserRouter([
       {
         path: "/allArt",
         element: <AllArtItems></AllArtItems>,
-        loader: () => fetch("http://localhost:5000/allArt"),
+        loader: () =>
+          fetch("https://art-and-craft-store-server-omega.vercel.app/allArt"),
       },
       {
         path: "/allArt/:id",
@@ -58,7 +64,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allArt/${params.id}`),
+          fetch(
+            `https://art-and-craft-store-server-omega.vercel.app/allArt/${params.id}`
+          ),
       },
       {
         path: "/myArt",
@@ -67,7 +75,8 @@ const router = createBrowserRouter([
             <MyArt></MyArt>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/allArt"),
+        loader: () =>
+          fetch("https://art-and-craft-store-server-omega.vercel.app/allArt"),
       },
       {
         path: "/updateArt/:id",
@@ -77,7 +86,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allArt/${params.id}`),
+          fetch(
+            `https://art-and-craft-store-server-omega.vercel.app/allArt/${params.id}`
+          ),
       },
     ],
   },

@@ -35,13 +35,16 @@ const UpdateArt = () => {
     console.log(updatedArt);
 
     // send data to the server
-    fetch(`http://localhost:5000/allArt/${art._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedArt),
-    })
+    fetch(
+      `https://art-and-craft-store-server-omega.vercel.app/allArt/${art._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedArt),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
